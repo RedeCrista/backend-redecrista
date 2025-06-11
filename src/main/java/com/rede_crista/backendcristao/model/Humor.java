@@ -10,7 +10,7 @@ import jakarta.persistence.Id;
 public class Humor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long i;
 
     private String titulo;
     private String texto;
