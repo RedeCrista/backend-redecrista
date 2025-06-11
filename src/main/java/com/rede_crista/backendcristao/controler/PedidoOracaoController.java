@@ -2,12 +2,10 @@ package com.rede_crista.backendcristao.controler;
 
 import com.rede_crista.backendcristao.model.PedidoOracao;
 import com.rede_crista.backendcristao.repository.PedidoOracaoRepository;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/pedidos")
@@ -16,7 +14,7 @@ public class PedidoOracaoController {
     private PedidoOracaoRepository pedidoRepo;
 
     @PostMapping
-    public ResponseEntity<String> criarPedido(@RequestBody PedidoOracao pedido) {
+    public ResponseEntity<String> criarPedido(@Valid @RequestBody PedidoOracao pedido) {
         pedidoRepo.save(pedido);
         return ResponseEntity.ok("Pedido de oração enviado com sucesso!");
     }

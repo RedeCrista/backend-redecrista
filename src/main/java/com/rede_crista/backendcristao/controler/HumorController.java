@@ -4,15 +4,13 @@ import com.rede_crista.backendcristao.model.Humor;
 import com.rede_crista.backendcristao.repository.HumorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/humores")
+@CrossOrigin(origins = "*")
 public class HumorController {
     @Autowired
     private HumorRepository humorRepo;
@@ -27,5 +25,10 @@ public class HumorController {
         return humorRepo.findById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("/random")
+    public Humor buscarAleatorio() {
+        return humorRepo.buscarAleatorio();
     }
 }
